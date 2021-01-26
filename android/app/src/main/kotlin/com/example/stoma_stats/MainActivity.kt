@@ -1,4 +1,4 @@
-package com.example.stoma_stats
+package com.frasertooth.stoma_stats
 
 import io.flutter.embedding.android.FlutterActivity
 

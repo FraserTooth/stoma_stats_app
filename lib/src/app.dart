@@ -1,9 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
 import './views/home.dart';
 
 class App extends StatelessWidget {
+  final Future<FirebaseApp> _initialization = Firebase.initializeApp();
+
   @override
   Widget build(BuildContext context) {
+    return FutureBuilder(
+      // Initialize FlutterFire:
+      future: _initialization,
+      builder: (context, snapshot) {
+        // Check for errors
+        if (snapshot.hasError) {
+          return bad();
+        }
+
+        // Once complete, show your application
+        if (snapshot.connectionState == ConnectionState.done) {
+          return app();
+        }
+
+        // Otherwise, show something whilst waiting for initialization to complete
+        return loading();
+      },
+    );
+  }
+
+  Widget app() {
     return MaterialApp(
       title: 'Stoma Stats',
       theme: ThemeData(
@@ -23,6 +47,18 @@ class App extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: HomePage(),
+    );
+  }
+
+  Widget bad() {
+    return Center(
+      child: Text("Something went wrong...", textDirection: TextDirection.ltr),
+    );
+  }
+
+  Widget loading() {
+    return Center(
+      child: Text("Loading...", textDirection: TextDirection.ltr),
     );
   }
 }
