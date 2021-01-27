@@ -2,7 +2,6 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_login/flutter_login.dart';
 import '../../widgets/fade_route.dart';
@@ -38,6 +37,7 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
       print(e);
       return e.code;
     }
+    await Future.delayed(Duration(seconds: 2));
     return null;
   }
 
@@ -61,6 +61,7 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
       print(e);
       return e.code;
     }
+    await Future.delayed(Duration(seconds: 2));
     return null;
   }
 
@@ -200,8 +201,6 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
         ));
       },
       onRecoverPassword: (name) {
-        print('Recover password info');
-        print('Name: $name');
         return _recoverPassword(name);
         // Show new password dialog
       },

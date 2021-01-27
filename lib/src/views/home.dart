@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import '../model/user.dart';
+
+FirebaseFirestore firestore = FirebaseFirestore.instance;
 
 class HomePage extends StatefulWidget {
   @override
@@ -24,10 +28,10 @@ class _HomePageState extends State<HomePage> {
     return formatted;
   }
 
-  void updateChangeDate(){
+  void updateChangeDate() {
     setState(() {
-          _previousChange=new DateTime.now();
-        });
+      _previousChange = new DateTime.now();
+    });
   }
 
   Widget body() {
@@ -37,16 +41,17 @@ class _HomePageState extends State<HomePage> {
 
     return Center(
       child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text(displayString),
-            ElevatedButton(
-              child: Text("Changed Stoma"),
-              onPressed: updateChangeDate,
-              )
-          ],
-        )
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(displayString),
+          ElevatedButton(
+            child: Text("Changed Stoma"),
+            onPressed: updateChangeDate,
+          ),
+          AddUser("Test"),
+        ],
+      )
     );
   }
 }
