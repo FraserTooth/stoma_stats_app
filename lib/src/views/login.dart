@@ -1,8 +1,5 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/rendering.dart';
 
 import '../components/logins/email.dart';
 
@@ -45,7 +42,7 @@ class _LoginState extends State<Login> {
           })
         ],
       ),
-      body: EmailLogin()
+      body: EmailLoginScreen()
     );
   }
 }
