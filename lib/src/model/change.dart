@@ -7,31 +7,33 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 FirebaseAuth auth = FirebaseAuth.instance;
 
-class AddUser extends StatelessWidget {
+class AddChange extends StatelessWidget {
   final String stoma_type;
+  final DateTime timestamp;
+  int number;
 
-  AddUser(this.stoma_type);
+  AddChange(this.stoma_type, this.timestamp, this.number);
 
   @override
   Widget build(BuildContext context) {
     // Create a CollectionReference called users that references the firestore collection
-    CollectionReference users = FirebaseFirestore.instance.collection('users');
+    CollectionReference changes = FirebaseFirestore.instance
+        .collection('users')
+        .doc(auth.currentUser.uid)
+        .collection('changes');
 
-    Future<void> addUser() {
+    Future<void> addChange() {
       // Call the user's CollectionReference to add a new user
-      return users
-          .doc(auth.currentUser.uid)
-          .set({
-            'stoma_type': stoma_type
-          })
-          .then((value) => print("User Added"))
+      return changes
+          .add({"type": stoma_type, "timestamp": timestamp, "number": number})
+          .then((value) => print("Change Added"))
           .catchError((error) => print("Failed to add user: $error"));
     }
 
     return TextButton(
-      onPressed: addUser,
+      onPressed: addChange,
       child: Text(
-        "Add User",
+        "Add Change",
       ),
     );
   }

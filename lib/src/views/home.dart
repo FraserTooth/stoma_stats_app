@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../model/user.dart';
+import '../model/change.dart';
 
 FirebaseFirestore firestore = FirebaseFirestore.instance;
 
@@ -50,6 +51,7 @@ class _HomePageState extends State<HomePage> {
             onPressed: updateChangeDate,
           ),
           AddUser("Test"),
+          AddChange("Dansac NovaLife", new DateTime.now(), 1),
         ],
       )
     );
