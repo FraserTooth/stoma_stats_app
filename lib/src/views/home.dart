@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../model/user.dart';
-import '../model/change.dart';
+import 'package:stoma_stats/src/components/forms/change.dart';
 
 FirebaseFirestore firestore = FirebaseFirestore.instance;
 
@@ -41,19 +40,17 @@ class _HomePageState extends State<HomePage> {
         : "No Previous Date Listed";
 
     return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text(displayString),
-          ElevatedButton(
-            child: Text("Changed Stoma"),
-            onPressed: updateChangeDate,
-          ),
-          AddUser("Test"),
-          AddChange("Dansac NovaLife", new DateTime.now(), 1),
-        ],
-      )
-    );
+        child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Text(displayString),
+        ElevatedButton(
+          child: Text("Changed Stoma"),
+          onPressed: updateChangeDate,
+        ),
+        ChangeForm(),
+      ],
+    ));
   }
 }
