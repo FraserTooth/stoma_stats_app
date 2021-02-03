@@ -17,7 +17,10 @@ class SuppliesList extends StatelessWidget {
 
   List listSupplies(AsyncSnapshot<QuerySnapshot> snapshot) {
     return snapshot.data.docs
-        .map((doc) => new ListTile(title: new Text(doc.id), subtitle: new Text(doc["amount"].toString())))
+        .map((doc) => new ListTile(
+          title: new Text(doc.id), 
+          subtitle: new Text("Amount: " + doc["amount"].toString()))
+        )
         .toList();
   }
 }
