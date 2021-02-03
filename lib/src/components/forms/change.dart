@@ -58,7 +58,7 @@ class _ChangeFormState extends State<ChangeForm> {
           ElevatedButton(
             onPressed: () {
               if (_formKey.currentState.validate()) {
-                change.addChange(typeController.text, new DateTime.now(), int.parse(numberController.text));
+                change.add(typeController.text, new DateTime.now(), int.parse(numberController.text));
               }
             },
             child: Text('Submit'),
