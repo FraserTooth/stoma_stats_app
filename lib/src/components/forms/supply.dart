@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:stoma_stats/src/model/change.dart';
 import 'package:flutter/services.dart';
 
-class ChangeForm extends StatefulWidget {
+// Models
+import 'package:stoma_stats/src/model/supplies.dart';
+
+class SupplyForm extends StatefulWidget {
   @override
-  _ChangeFormState createState() => _ChangeFormState();
+  _SupplyFormState createState() => _SupplyFormState();
 }
 
-class _ChangeFormState extends State<ChangeForm> {
+class _SupplyFormState extends State<SupplyForm> {
   final _formKey = GlobalKey<FormState>();
   final typeController = TextEditingController();
   final timestampController = TextEditingController();
   final numberController = TextEditingController();
 
-  ChangeModel change = new ChangeModel();
+  SuppliesModel supplies = new SuppliesModel();
 
   @override
   void dispose() {
@@ -50,15 +52,15 @@ class _ChangeFormState extends State<ChangeForm> {
             inputFormatters: <TextInputFormatter>[
                 FilteringTextInputFormatter.digitsOnly
             ],
-            decoration: InputDecoration(labelText: 'Enter number used'),
+            decoration: InputDecoration(labelText: 'Enter amount'),
           ),
           ElevatedButton(
             onPressed: () {
               if (_formKey.currentState.validate()) {
-                change.add(typeController.text, new DateTime.now(), int.parse(numberController.text));
+                supplies.create(typeController.text, int.parse(numberController.text));
               }
             },
-            child: Text('Submit'),
+            child: Text('Register Supplies'),
           ),
         ]));
   }
