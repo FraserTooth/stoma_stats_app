@@ -12,6 +12,7 @@ class SupplyForm extends StatefulWidget {
 class _SupplyFormState extends State<SupplyForm> {
   final _formKey = GlobalKey<FormState>();
   final typeController = TextEditingController();
+  final locationController = TextEditingController();
   final timestampController = TextEditingController();
   final numberController = TextEditingController();
 
@@ -41,6 +42,16 @@ class _SupplyFormState extends State<SupplyForm> {
             decoration: InputDecoration(labelText: 'Enter your Stoma Type'),
           ),
           TextFormField(
+            controller: locationController,
+            validator: (value) {
+              if (value.isEmpty) {
+                return 'Please enter some text';
+              }
+              return null;
+            },
+            decoration: InputDecoration(labelText: 'Enter where it is stored'),
+          ),
+          TextFormField(
             controller: numberController,
             keyboardType: TextInputType.number,
             validator: (value) {
@@ -57,7 +68,11 @@ class _SupplyFormState extends State<SupplyForm> {
           ElevatedButton(
             onPressed: () {
               if (_formKey.currentState.validate()) {
-                supplies.create(typeController.text, int.parse(numberController.text));
+                supplies.create(
+                  description: typeController.text, 
+                  number: int.parse(numberController.text), 
+                  location: locationController.text
+                );
               }
             },
             child: Text('Register Supplies'),

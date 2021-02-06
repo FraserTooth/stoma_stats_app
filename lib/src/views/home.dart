@@ -88,7 +88,11 @@ class _HomePageState extends State<HomePage> {
   }
 
   void changeStoma() {
-    changes.add("Dansac", new DateTime.now(), 1);
+    changes.add(
+      stoma_type: "Dansac", 
+      timestamp: new DateTime.now(), 
+      number:1
+    );
   }
 
   Widget body() {

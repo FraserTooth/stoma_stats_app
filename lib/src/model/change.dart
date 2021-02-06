@@ -9,7 +9,7 @@ FirebaseAuth auth = FirebaseAuth.instance;
 FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
 class ChangeModel {
-  Future<void> add(String stoma_type, DateTime timestamp, int number) {
+  Future<void> add({String stoma_type, DateTime timestamp, int number}) {
     CollectionReference changes = _firestore
         .collection('users')
         .doc(auth.currentUser.uid)
