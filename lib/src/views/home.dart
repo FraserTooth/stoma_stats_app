@@ -62,6 +62,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           title: Text('Home'),
         ),
@@ -101,7 +102,13 @@ class _HomePageState extends State<HomePage> {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        pages[_selectedIndex]
+        SingleChildScrollView(child: 
+          IntrinsicHeight(child:
+            Expanded(
+              child:pages[_selectedIndex],
+            ) 
+          ) 
+        )
       ]
     ));
   }

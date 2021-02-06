@@ -21,7 +21,7 @@ class SuppliesView extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Container(
-          height: MediaQuery.of(context).size.width * 0.65,
+          height: MediaQuery.of(context).size.height * 0.3,
           child: SuppliesList()
         ),
         SupplyForm(),
